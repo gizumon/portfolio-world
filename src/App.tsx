@@ -1,26 +1,90 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useRef, VFC } from 'react';
+import { DoubleSide } from 'three';
+import { Environment, OrbitControls } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
+import {
+  Physics,
+  useBox,
+  useCompoundBody,
+  useCylinder,
+  useSphere,
+  usePlane,
+  useConeTwistConstraint,
+  usePointToPointConstraint
+} from '@react-three/cannon'
+import styled from 'styled-components';
+import Main from './components/Main';
+import { Plane } from './components/Plane';
 
-function App() {
+const Container = styled.div({
+  width: '100vw',
+  height: '100vh',
+});
+
+export default function App() {
+  const color = 'gray'
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Canvas style={{backgroundColor: color}} camera={{ fov: 50, position: [0, 5, 10] }}>
+        <Contents />
+      </Canvas>
+      {/* <div style={{minWidth: 300, minHeight: 300}} >
+        <div>HTML</div>
+      </div> */}
+    </Container>
+  )
 }
 
-export default App;
+
+const Contents: VFC = () => {
+  const panSpeed = 5.0
+  const boxRef = useRef<any>(null)
+
+  useFrame(({ clock }) => {
+    const a = clock.getElapsedTime()
+    if (!boxRef || !boxRef.current || !boxRef.current.rotation) { return; }
+    boxRef.current.rotation.x = a * 1
+    boxRef.current.rotation.y = a * 1
+    boxRef.current.rotation.z = a * 0
+  })
+
+  const clickHandler = () => {
+    window.location.href = "https://gizumon.github.io/portfolio/#portfolio"
+  }
+
+  return (
+    <>
+      {/* control */}
+      <OrbitControls panSpeed={panSpeed} />
+
+      {/* light */}
+      <directionalLight
+        position={[5, 5, 5]}
+        intensity={1} // 光の強さ
+        shadow-mapSize-width={2048} // 描画精度
+        shadow-mapSize-height={2048}
+        castShadow
+      />
+
+      <directionalLight
+        position={[-10, -10, -5]}
+        intensity={1} // 光の強さ
+        shadow-mapSize-width={2048} // 描画精度
+        shadow-mapSize-height={2048}
+        castShadow
+      />
+      <color attach="background" args={['#171720']} />
+      <fog attach="fog" args={['#171720', 20, 70]} />
+      <ambientLight intensity={0.2} />
+      <pointLight position={[-10, -10, -10]} color="red" intensity={1.5} />
+      <Physics iterations={15} gravity={[0, -200, 0]} allowSleep={false}>
+        <Suspense fallback={null}>
+          <Main />
+        </Suspense>
+      </Physics>
+
+      {/* grid */}
+      <gridHelper position={[0, 0.01, 0]} args={[10, 10, 'gray', 'black']} />
+    </>
+  )
+}

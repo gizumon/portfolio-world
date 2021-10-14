@@ -1,0 +1,7 @@
+{
+  "workbench.colorCustomizations": {
+    "toolbar.hoverBackground": "#b4ffaaaa",
+    "activityBarBadge.background": "#b4ffaaaa",
+    "statusBar.background":  "#b4ffaaaa",
+  }
+}
