@@ -9,13 +9,13 @@ import { getModelPath, IModelName } from '../utils/constants';
 
 interface Props {
   model: IModelName;
-  pos: IPosition
+  pos: IPosition;
   onClick?: () => void;
 }
 
 type GLTFResult = GLTF & {
   nodes: {
-    Cube: THREE.Mesh
+    Model: THREE.Mesh
   }
   materials: {
     Material: THREE.MeshStandardMaterial
@@ -28,18 +28,16 @@ export default function BoardModel({
   const glb = useLoader(GLTFLoader, getModelPath(model)) as any as GLTFResult;
   const [board] = useBox(() => ({
     mass: 1,
-    args: [1, 0, 5],
+    args: [2.1, 0.1, 1.3],
     linearDamping: 0.9,
     angulardamping: 1.99,
     position: [pos.x, pos.y, pos.z],
   } as BoxProps));
   const bind = useDragConstraint(board);
-  console.log('glb ', glb)
+
   return (
-    <group ref={board} onClick={onClick} {...bind} dispose={null}>
-      <group scale={[1, 1, 1]} {...props}>
-        <mesh receiveShadow castShadow material={glb.materials.Material} geometry={glb.nodes['Cube'].geometry} />
-      </group>
+    <group ref={board} {...bind} onClick={onClick} {...props}>
+      <mesh receiveShadow castShadow material={glb.materials.Material} geometry={glb.nodes['Model'].geometry} />
     </group>
   )
 }

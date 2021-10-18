@@ -5,7 +5,7 @@ export function Plane(props: PlaneProps) {
   const [ref] = usePlane(() => ({ ...props }))
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry args={[1000, 1000]} />
+      <planeBufferGeometry args={[1000, 1000, 1000]} />
       <meshStandardMaterial color="#ffffff" />
     </mesh>
   )

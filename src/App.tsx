@@ -54,8 +54,6 @@ const Contents: VFC = () => {
 
   return (
     <>
-      {/* control */}
-      <OrbitControls panSpeed={panSpeed} />
 
       {/* light */}
       <directionalLight
@@ -83,8 +81,11 @@ const Contents: VFC = () => {
         </Suspense>
       </Physics>
 
+      {/* control */}
+      <OrbitControls panSpeed={panSpeed} />
+
       {/* grid */}
-      <gridHelper position={[0, 0.01, 0]} args={[10, 10, 'gray', 'black']} />
+      {/* <gridHelper position={[0, 0.01, 0]} args={[10, 10, 'gray', 'black']} /> */}
     </>
   )
 }
