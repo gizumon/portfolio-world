@@ -2,6 +2,36 @@
 
 3D portfolio using Three.js
 
+## How to setup firebase hosting
+
+* Install Firebase CLI
+
+```bash
+npm install -g firebase-tools 
+```
+
+* Login firebase
+
+```bash
+firebase login
+
+# Check deploy resource
+firebase projects:list
+```
+
+* Setup firebase
+
+```bash
+firebase init
+```
+
+## How to deploy
+
+```bash
+# firebase login
+firebase deploy
+```
+
 <details>
 
 # Getting Started with Create React App
