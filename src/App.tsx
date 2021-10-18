@@ -22,15 +22,11 @@ const Container = styled.div({
 });
 
 export default function App() {
-  const color = 'gray'
   return (
     <Container>
-      <Canvas style={{backgroundColor: color}} camera={{ fov: 50, position: [0, 5, 10] }}>
+      <Canvas camera={{ fov: 50, position: [0, 5, 10] }}>
         <Contents />
       </Canvas>
-      {/* <div style={{minWidth: 300, minHeight: 300}} >
-        <div>HTML</div>
-      </div> */}
     </Container>
   )
 }
