@@ -10,9 +10,9 @@ export default function FloatGroup() {
 
   return (
     <>
-      <PCDisplay child={<Web url="https://gizumon.github.io/portfolio/"/>} position={[-15, 3, 8]}/>
+      <PCDisplay child={<Web url="https://pepup-automation-gui.herokuapp.com/"/>} position={[-15, 3, 8]}/>
       <PCDisplay child={<Web url="https://posmapp-8a86e.web.app/login"/>} position={[-5, 5, 2]}/>
-      <PCDisplay child={<Web url="https://pepup-automation-gui.herokuapp.com/"/>} position={[5, 2, 7]}/>
+      <PCDisplay child={<Web url="https://gizumon.github.io/portfolio/"/>} position={[5, 2, 7]}/>
       <PCDisplay child={<Web url="https://life-manager-app.herokuapp.com/"/>} position={[15, 6, 3]}/>
     </>
   )

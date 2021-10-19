@@ -2,6 +2,8 @@
 
 3D portfolio using Three.js
 
+[site link](https://portofolio-3d.web.app/)
+
 ## How to setup firebase hosting
 
 * Install Firebase CLI
@@ -29,8 +31,11 @@ firebase init
 
 ```bash
 # firebase login
-firebase deploy
+# firebase deploy
+yarn deploy
 ```
+
+* should build before deploying
 
 <details>
 
