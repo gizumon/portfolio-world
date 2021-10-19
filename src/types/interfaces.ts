@@ -15,3 +15,9 @@ export interface IRotate {
   y: number;
   z: number;
 }
+
+export interface IMove {
+  x: number;
+  y: number;
+  z: number;
+}
